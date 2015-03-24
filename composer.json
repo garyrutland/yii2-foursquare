@@ -1,0 +1,28 @@
+{
+    "name": "garyrutland/yii2-foursquare-sdk",
+    "description": "Yii2 Foursquare SDK",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","foursquare"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/garyrutland/yii2-foursquare-sdk/issues",
+        "source": "https://github.com/garyrutland/yii2-foursquare-sdk"
+    },
+    "authors": [
+        {
+            "name": "Gary Rutland",
+            "email": "gary.rutland@me.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "jcroll/foursquare-api-client": "1.0.*",
+        "guzzle/guzzle": "3.9.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "garyrutland\\foursquare\\": ""
+        }
+    }
+}
