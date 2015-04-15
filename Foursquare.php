@@ -25,7 +25,7 @@ class Foursquare extends Component
             'client_secret' => $this->secret,
         ]);
 
-        $accessToken = Yii::$app->session->get('fsAccessToken');
+        $accessToken = !empty(Yii::$app->session) ? Yii::$app->session->get('fsAccessToken') : null;
         if ($accessToken !== null) {
             $this->setAccessToken($accessToken);
         }
@@ -53,7 +53,7 @@ class Foursquare extends Component
         ];
         return $url . '?' . http_build_query($params);
     }
-    
+
     public function getLoginSession($redirectUrl)
     {
         $code = Yii::$app->request->get('code');
@@ -111,5 +111,11 @@ class Foursquare extends Component
         }
 
         return [];
+    }
+
+    public function getCategories()
+    {
+        $request = $this->client->getCommand('venues/categories')->execute();
+        return !empty($request['response']['categories']) ? $request['response']['categories'] : [];
     }
 }
