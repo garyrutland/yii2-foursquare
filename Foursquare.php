@@ -116,6 +116,43 @@ class Foursquare extends Component
     public function getCategories()
     {
         $request = $this->client->getCommand('venues/categories')->execute();
-        return !empty($request['response']['categories']) ? $request['response']['categories'] : [];
+
+        if (!empty($request['response']['categories'])) {
+            return $request['response']['categories'];
+        }
+
+        return [];
+    }
+
+    public function getVenues($lat, $lng, $categoryId)
+    {
+        $request = $this->client->getCommand('venues/search', [
+            'll' => implode(',', [$lat, $lng]),
+            'categoryId' => $categoryId,
+            'limit' => 50,
+            'intent' => 'browse',
+            'radius' => '1609',
+        ])->execute();
+
+        if (!empty($request['response']['venues'])) {
+            return $request['response']['venues'];
+        }
+
+        return [];
+    }
+
+    public function getVenue($venueId)
+    {
+        $request = $this->client->getCommand('venues', [
+            'venue_id' => $venueId,
+        ])->execute();
+
+        print_r(array_keys($request));
+
+        if (!empty($request['response']['venue'])) {
+            return $request['response']['venue'];
+        }
+
+        return [];
     }
 }
