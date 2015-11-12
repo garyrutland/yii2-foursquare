@@ -160,7 +160,7 @@ class Foursquare extends Component
     {
         // would need to merge $params with default array ['ll' => implode(',', [$lat, $lng]),
         //    'query' => $query,]
-        $request = $this->client->getCommand('venues/search', array_merge[
+        $request = $this->client->getCommand('venues/search', array_merge([
             'll' => implode(',', [$lat, $lng]),
             'query' => $query,
             'limit' => 50,
