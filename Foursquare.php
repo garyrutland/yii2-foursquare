@@ -156,15 +156,17 @@ class Foursquare extends Component
         return [];
     }
     
-     public function searchVenues($lat, $lng, $query, $params)
+     public function searchVenues($lat, $lng, $query, $params = [])
     {
-        $request = $this->client->getCommand('venues/search', [
+        // would need to merge $params with default array ['ll' => implode(',', [$lat, $lng]),
+        //    'query' => $query,]
+        $request = $this->client->getCommand('venues/search', array_merge[
             'll' => implode(',', [$lat, $lng]),
             'query' => $query,
             'limit' => 50,
             'intent' => 'browse',
             'radius' => '5000',
-        ])->execute();
+        ],$params))->execute();
 
         if (!empty($request['response']['venues'])) {
             return $request['response']['venues'];
