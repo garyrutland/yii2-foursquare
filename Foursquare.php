@@ -131,7 +131,7 @@ class Foursquare extends Component
             'categoryId' => $categoryId,
             'limit' => 50,
             'intent' => 'browse',
-            'radius' => '1609',
+            'radius' => '100000',
         ])->execute();
 
         if (!empty($request['response']['venues'])) {
@@ -146,8 +146,6 @@ class Foursquare extends Component
         $request = $this->client->getCommand('venues', [
             'venue_id' => $venueId,
         ])->execute();
-
-        print_r(array_keys($request));
 
         if (!empty($request['response']['venue'])) {
             return $request['response']['venue'];
